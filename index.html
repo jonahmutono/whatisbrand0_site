@@ -110,6 +110,39 @@
     position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
     color: var(--gold); opacity: .18; pointer-events: none;
   }
+  /* the same per-archetype sigil animations the quiz plays continuously on
+     its masthead slide — here they're paused by default and only run while
+     the box is hovered, since 12 of them animating at once would be too busy */
+  .archetype-sigil { animation-play-state: paused; }
+  .archetype-cell:hover .archetype-sigil { animation-play-state: running; }
+  .archetype-sigil.mood-spin-slow   { animation: sigilSpin 210s linear infinite; }
+  .archetype-sigil.mood-spin-medium { animation: sigilSpin 85s linear infinite; }
+  .archetype-sigil.mood-drift-shard { animation: sigilShardDrift 9s ease-in-out infinite alternate; }
+  .archetype-sigil.mood-pulse-breathe { animation: sigilBreathe 12s ease-in-out infinite alternate; }
+  .archetype-sigil.mood-wobble-elastic { animation: sigilWobble 8s ease-in-out infinite; }
+  .archetype-sigil.mood-ascend-pulse { animation: sigilAscend 9s ease-in-out infinite alternate; }
+  @keyframes sigilSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes sigilShardDrift {
+    0%   { transform: translate(-8px, 2px) rotate(-3deg) scale(1); }
+    100% { transform: translate(8px, -4px) rotate(4deg) scale(1.04); }
+  }
+  @keyframes sigilBreathe {
+    0%   { transform: scale(1); opacity: .13; }
+    100% { transform: scale(1.07); opacity: .24; }
+  }
+  @keyframes sigilWobble {
+    0%, 100% { transform: rotate(-4deg) scale(1); }
+    25%      { transform: rotate(3deg) scale(1.03); }
+    50%      { transform: rotate(-2deg) scale(0.98); }
+    75%      { transform: rotate(5deg) scale(1.02); }
+  }
+  @keyframes sigilAscend {
+    0%   { transform: translateY(6px); opacity: .14; }
+    100% { transform: translateY(-8px); opacity: .26; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .archetype-sigil { animation: none !important; }
+  }
   /* stroke-width here overrides each sigil's inline attribute (2, or 1.5
      for Innocent) — at this low opacity and box size the original weight
      read too faint; children inherit the CSS value from the svg element */
@@ -247,51 +280,51 @@
 
     <div class="archetype-grid">
       <div class="archetype-cell">
-        <div class="archetype-sigil"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="100" r="64"/><circle cx="100" cy="100" r="82"/></svg></div>
+        <div class="archetype-sigil mood-pulse-breathe"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="100" r="64"/><circle cx="100" cy="100" r="82"/></svg></div>
         <div class="archetype-name">Innocent</div><div class="archetype-keywords">Purity<br/>Possibility</div>
       </div>
       <div class="archetype-cell">
-        <div class="archetype-sigil"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="64" y="64" width="72" height="72" transform="rotate(45 100 100)"/><line x1="100" y1="26" x2="100" y2="174"/><line x1="26" y1="100" x2="174" y2="100"/></svg></div>
+        <div class="archetype-sigil mood-spin-medium"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="64" y="64" width="72" height="72" transform="rotate(45 100 100)"/><line x1="100" y1="26" x2="100" y2="174"/><line x1="26" y1="100" x2="174" y2="100"/></svg></div>
         <div class="archetype-name">Explorer</div><div class="archetype-keywords">Freedom<br/>Discovery</div>
       </div>
       <div class="archetype-cell">
-        <div class="archetype-sigil"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="100" r="72"/><line x1="34" y1="100" x2="166" y2="100"/><circle cx="100" cy="100" r="9"/></svg></div>
+        <div class="archetype-sigil mood-spin-slow"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="100" r="72"/><line x1="34" y1="100" x2="166" y2="100"/><circle cx="100" cy="100" r="9"/></svg></div>
         <div class="archetype-name">Sage</div><div class="archetype-keywords">Truth<br/>Perspective</div>
       </div>
       <div class="archetype-cell">
-        <div class="archetype-sigil"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M100,22 L166,54 L158,118 Q158,158 100,182 Q42,158 42,118 L34,54 Z"/></svg></div>
+        <div class="archetype-sigil mood-ascend-pulse"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M100,22 L166,54 L158,118 Q158,158 100,182 Q42,158 42,118 L34,54 Z"/></svg></div>
         <div class="archetype-name">Hero</div><div class="archetype-keywords">Courage<br/>Transformation</div>
       </div>
       <div class="archetype-cell">
-        <div class="archetype-sigil"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M64,20 L124,78 L92,94 L152,158 L98,116 L118,102 L58,60 Z"/></svg></div>
+        <div class="archetype-sigil mood-drift-shard"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M64,20 L124,78 L92,94 L152,158 L98,116 L118,102 L58,60 Z"/></svg></div>
         <div class="archetype-name">Outlaw</div><div class="archetype-keywords">Disruption<br/>Liberation</div>
       </div>
       <div class="archetype-cell">
-        <div class="archetype-sigil"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="88" cy="100" r="72"/><circle cx="126" cy="100" r="54"/></svg></div>
+        <div class="archetype-sigil mood-spin-medium"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="88" cy="100" r="72"/><circle cx="126" cy="100" r="54"/></svg></div>
         <div class="archetype-name">Magician</div><div class="archetype-keywords">Vision<br/>Transmutation</div>
       </div>
       <div class="archetype-cell">
-        <div class="archetype-sigil"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M40,150 L34,52 L118,30 L170,64 L160,144"/></svg></div>
+        <div class="archetype-sigil mood-spin-medium"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M40,150 L34,52 L118,30 L170,64 L160,144"/></svg></div>
         <div class="archetype-name">Creator</div><div class="archetype-keywords">Imagination<br/>Expression</div>
       </div>
       <div class="archetype-cell">
-        <div class="archetype-sigil"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M40,112 Q40,50 100,50 Q160,50 160,112"/><ellipse cx="100" cy="130" rx="46" ry="34"/></svg></div>
+        <div class="archetype-sigil mood-pulse-breathe"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M40,112 Q40,50 100,50 Q160,50 160,112"/><ellipse cx="100" cy="130" rx="46" ry="34"/></svg></div>
         <div class="archetype-name">Caregiver</div><div class="archetype-keywords">Compassion<br/>Support</div>
       </div>
       <div class="archetype-cell">
-        <div class="archetype-sigil"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="76" y="18" width="48" height="164"/><line x1="100" y1="18" x2="100" y2="182"/><line x1="50" y1="182" x2="150" y2="182"/></svg></div>
+        <div class="archetype-sigil mood-spin-slow"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="76" y="18" width="48" height="164"/><line x1="100" y1="18" x2="100" y2="182"/><line x1="50" y1="182" x2="150" y2="182"/></svg></div>
         <div class="archetype-name">Ruler</div><div class="archetype-keywords">Structure<br/>Influence</div>
       </div>
       <div class="archetype-cell">
-        <div class="archetype-sigil"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="78" r="58"/><circle cx="100" cy="122" r="58"/></svg></div>
+        <div class="archetype-sigil mood-pulse-breathe"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="78" r="58"/><circle cx="100" cy="122" r="58"/></svg></div>
         <div class="archetype-name">Lover</div><div class="archetype-keywords">Connection<br/>Beauty</div>
       </div>
       <div class="archetype-cell">
-        <div class="archetype-sigil"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M100,24 L116,72 L164,56 L130,94 L170,122 L120,118 L126,170 L100,126 L70,168 L78,116 L30,124 L64,92 L28,58 L78,70 Z"/></svg></div>
+        <div class="archetype-sigil mood-wobble-elastic"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M100,24 L116,72 L164,56 L130,94 L170,122 L120,118 L126,170 L100,126 L70,168 L78,116 L30,124 L64,92 L28,58 L78,70 Z"/></svg></div>
         <div class="archetype-name">Jester</div><div class="archetype-keywords">Joy<br/>Subversion</div>
       </div>
       <div class="archetype-cell">
-        <div class="archetype-sigil"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="34" y="34" width="132" height="132" rx="30"/></svg></div>
+        <div class="archetype-sigil mood-spin-slow"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="34" y="34" width="132" height="132" rx="30"/></svg></div>
         <div class="archetype-name">Everyman</div><div class="archetype-keywords">Belonging<br/>Humanity</div>
       </div>
     </div>
