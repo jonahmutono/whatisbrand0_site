@@ -260,12 +260,23 @@
     font-size: .98rem; line-height: 1.65; color: rgba(247,241,229,.82);
     max-width: 460px; margin: 0 auto clamp(56px, 8vw, 88px);
   }
-  /* three real recordings of the actual reading, sitting side by side —
-     no motion of their own beyond the recordings themselves */
+  /* three real recordings of the actual reading, sitting side by side.
+     when each loops, a clone showing the first frame slides fully across
+     and covers the frozen last frame underneath -- a push/cover wipe, not
+     a fade, nothing ever goes transparent -- see the JS at the bottom */
   .reading-cards { display: flex; justify-content: center; align-items: center; gap: clamp(14px, 2.4vw, 24px); }
+  .reading-card-wrap {
+    position: relative; width: clamp(110px, 15vw, 168px); aspect-ratio: 888 / 1080;
+    border-radius: 6px; overflow: hidden; box-shadow: 0 24px 48px -16px rgba(0,0,0,.5);
+  }
   .reading-card {
-    width: clamp(110px, 15vw, 168px); aspect-ratio: 888 / 1080; object-fit: cover;
-    border-radius: 6px; box-shadow: 0 24px 48px -16px rgba(0,0,0,.5);
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  /* the incoming clone: starts fully off to the right, slides to cover */
+  .reading-card.is-incoming { transform: translateX(100%); }
+  .reading-card.is-incoming.is-sliding-in { transform: translateX(0); transition: transform .42s ease; }
+  @media (prefers-reduced-motion: reduce) {
+    .reading-card.is-incoming.is-sliding-in { transition: none !important; }
   }
 
   /* ── offerings / pricing ── */
@@ -526,9 +537,9 @@
           <h2 class="reading-title">Your archetype is only the beginning.</h2>
           <p class="reading-sub">Brand0 turns the patterns in your identity into a system for understanding how you create, communicate and appear in culture.</p>
           <div class="reading-cards">
-            <video class="reading-card" src="videos/reading-1.mp4" autoplay muted loop playsinline aria-label="A sample Brand0 reading"></video>
-            <video class="reading-card" src="videos/reading-2.mp4" autoplay muted loop playsinline aria-label="A sample Brand0 reading"></video>
-            <video class="reading-card" src="videos/reading-3.mp4" autoplay muted loop playsinline aria-label="A sample Brand0 reading"></video>
+            <div class="reading-card-wrap"><video class="reading-card" src="videos/reading-1.mp4" autoplay muted playsinline aria-label="A sample Brand0 reading"></video></div>
+            <div class="reading-card-wrap"><video class="reading-card" src="videos/reading-2.mp4" autoplay muted playsinline aria-label="A sample Brand0 reading"></video></div>
+            <div class="reading-card-wrap"><video class="reading-card" src="videos/reading-3.mp4" autoplay muted playsinline aria-label="A sample Brand0 reading"></video></div>
           </div>
         </div>
       </div>
@@ -705,6 +716,53 @@
     });
   }, { threshold: 0.2 });
   observer.observe(field);
+})();
+
+// ── reading-card videos: when one loops, a clone showing the first frame
+// slides in from the right and physically covers the frozen last frame
+// underneath -- a push/cover wipe, like swiping to the next screen on a
+// phone. Nothing fades or disappears; the outgoing frame stays fully
+// opaque and static until the incoming one has completely covered it.
+// `loop` is intentionally left off the markup so `ended` actually fires. ──
+(function () {
+  'use strict';
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.reading-card-wrap').forEach(function (wrap) {
+    var video = wrap.querySelector('.reading-card');
+    if (reduceMotion) { video.loop = true; return; } // plain jump-cut loop, no motion
+
+    video.addEventListener('ended', function () {
+      if (wrap.querySelector('.is-incoming')) return; // a transition is already running
+
+      // video is now paused on its own last frame -- that's the static
+      // layer underneath; nothing needs to happen to it until the clone
+      // has fully covered it
+      var incoming = video.cloneNode(false);
+      incoming.className = 'reading-card is-incoming';
+      incoming.autoplay = false;
+      incoming.muted = true;
+      wrap.appendChild(incoming); // must be in the DOM to start loading at all; sits
+                                   // off-screen right, clipped by the wrap, not yet visible
+
+      var slid = false;
+      function startSlide() {
+        if (slid) return;
+        slid = true;
+        void incoming.offsetWidth; // commit the starting position before animating
+        incoming.classList.add('is-sliding-in');
+      }
+      incoming.addEventListener('loadedmetadata', function () { incoming.currentTime = 0; }, { once: true });
+      incoming.addEventListener('seeked', startSlide, { once: true });
+      setTimeout(startSlide, 800); // safety net if loading/seeking stalls -- same-origin cached
+                                    // video should resolve almost immediately in practice
+
+      incoming.addEventListener('transitionend', function () {
+        video.currentTime = 0;
+        video.play(); // now showing the same first frame the clone was covering it with
+        incoming.remove(); // swap is invisible -- both were at frame 0 at this instant
+      }, { once: true });
+    });
+  });
 })();
 </script>
 
