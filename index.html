@@ -45,6 +45,7 @@
   }
   .tick { width: 1px; height: 26px; background: var(--border-strong); margin: 14px 0; }
   .band { border-bottom: 1px solid var(--border); }
+  .offerings-kicker-mobile { display: none; } /* shown only on mobile, see media query */
 
   /* anchor targets land flush against the sticky header without this —
      offsets the jump by the header's height plus a little breathing room */
@@ -289,6 +290,27 @@
     #archetypes .col-left,
     #archetypes .col-center,
     #archetypes .col-right { text-align: center; }
+    /* culture section on mobile: drop the two eyebrow copy blocks, center
+       what's left, let the layout close up the gap */
+    .culture-eyebrow { display: none; }
+    #culture .band-head,
+    #culture .col-left,
+    #culture .col-center,
+    #culture .col-right { text-align: center; }
+    /* offerings section on mobile: drop the two eyebrow copy blocks and the
+       desktop kicker line, show the shorter replacement kicker instead,
+       center what's left, let the layout close up the gap */
+    .offerings-eyebrow, .offerings-kicker-desktop { display: none; }
+    .offerings-kicker-mobile { display: block; }
+    #offerings .band-head,
+    #offerings .col-left,
+    #offerings .col-center,
+    #offerings .col-right { text-align: center; }
+    /* tighten the whole section: less space above/below the kicker, less
+       gap between stacked price tiers, less padding inside each tier */
+    #offerings .band-head { padding-top: 24px; padding-bottom: 12px; }
+    #offerings .pricing-grid { gap: 4px; }
+    #offerings .price-tier { padding-top: 16px; padding-bottom: 16px; }
   }
 </style>
 </head>
@@ -424,11 +446,11 @@
   </section>
 
   <!-- ── Archetypes live in culture ── -->
-  <section class="band">
+  <section class="band" id="culture">
     <div class="band-head">
-      <div class="col-left"><p class="eyebrow">Archetypes<br/>live in culture.</p></div>
+      <div class="col-left"><p class="eyebrow culture-eyebrow">Archetypes<br/>live in culture.</p></div>
       <div class="col-center"><p class="kicker">Same patterns. New expressions.</p></div>
-      <div class="col-right"><p class="eyebrow">Different people.<br/>A brighter world.</p></div>
+      <div class="col-right"><p class="eyebrow culture-eyebrow">Different people.<br/>A brighter world.</p></div>
     </div>
 
     <div class="culture-grid">
@@ -469,9 +491,12 @@
   <!-- ── Offerings / pricing ── -->
   <section id="offerings">
     <div class="band-head">
-      <div class="col-left"><p class="eyebrow">Four ways into<br/>a clearer you.</p></div>
-      <div class="col-center"><p class="kicker">Strategy for a more interesting tomorrow.</p></div>
-      <div class="col-right"><p class="eyebrow">Same depth.<br/>Different paths.</p></div>
+      <div class="col-left"><p class="eyebrow offerings-eyebrow">Four ways into<br/>a clearer you.</p></div>
+      <div class="col-center">
+        <p class="kicker offerings-kicker-desktop">Strategy for a more interesting tomorrow.</p>
+        <p class="kicker offerings-kicker-mobile">Four Ways into a clearer you.</p>
+      </div>
+      <div class="col-right"><p class="eyebrow offerings-eyebrow">Same depth.<br/>Different paths.</p></div>
     </div>
 
     <div class="pricing-grid">
