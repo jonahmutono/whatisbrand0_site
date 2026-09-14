@@ -111,9 +111,19 @@
   .journal-card {
     display: grid; grid-template-columns: 200px 1fr; gap: clamp(20px, 3vw, 32px);
     padding: clamp(24px, 3vw, 36px) 0; border-bottom: 1px solid var(--border);
-    transition: opacity .2s ease;
+    /* starts hidden and settles up into place once populated -- see the
+       staggered reveal in the listing script, below -- instead of the
+       whole list snapping into existence the instant the fetch resolves */
+    opacity: 0; transform: translateY(14px);
+    transition: opacity .6s ease, transform .6s ease;
   }
-  .journal-card:hover { opacity: .82; }
+  .journal-card.is-visible { opacity: 1; transform: translateY(0); }
+  /* hover wants its own snappier timing, not the slower entrance duration
+     above -- only kicks in once a card has already settled into place */
+  .journal-card.is-visible:hover { opacity: .82; transition: opacity .2s ease; }
+  @media (prefers-reduced-motion: reduce) {
+    .journal-card { transition: none !important; }
+  }
   .journal-card-thumb {
     width: 200px; aspect-ratio: 4/3; border-radius: 2px; overflow: hidden;
     background: var(--bg-deep); flex-shrink: 0;
@@ -313,6 +323,14 @@
           '</div>' +
         '</a>';
       }).join('');
+      // Fade each card up into place with a slight stagger -- same
+      // restrained reveal language as the rest of the site (the Creative
+      // Relatives list, the tarot slide) -- instead of the whole list
+      // appearing at once the instant the fetch resolves.
+      var cards = list.querySelectorAll('.journal-card');
+      cards.forEach(function (el, i) {
+        setTimeout(function () { el.classList.add('is-visible'); }, 80 + i * 90);
+      });
     })
     .catch(function (e) {
       console.error('Journal listing failed:', e); // the rest of the page must not be affected
