@@ -98,16 +98,24 @@
     border-top: 1px solid var(--border);
   }
   .archetype-cell {
-    padding: 34px 22px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden; min-height: 210px;
+    padding: 22px; display: flex; flex-direction: column; justify-content: flex-end;
+    border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
   }
   .archetype-cell:nth-child(6n) { border-right: none; }
-  .archetype-sigil { width: 34px; height: 34px; margin-bottom: 18px; color: var(--gold); }
-  .archetype-sigil svg { width: 100%; height: 100%; }
+  /* the sigil fills the box as background atmosphere, not a small icon —
+     same language as the quiz's own masthead sigil behind the reveal */
+  .archetype-sigil {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    color: var(--gold); opacity: .18; pointer-events: none;
+  }
+  .archetype-sigil svg { width: 60%; height: 60%; }
   .archetype-name {
+    position: relative; z-index: 1;
     font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.15rem;
     letter-spacing: .01em; text-transform: uppercase; margin-bottom: 10px;
   }
-  .archetype-keywords { font-size: .88rem; line-height: 1.55; color: var(--muted); }
+  .archetype-keywords { position: relative; z-index: 1; font-size: .88rem; line-height: 1.55; color: var(--muted); }
 
   /* ── culture section ── */
   .culture-grid {
