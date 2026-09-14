@@ -404,8 +404,7 @@
       <a href="#offerings">Offerings</a>
     </nav>
     <nav class="site-nav right">
-      <a href="#">About</a>
-      <a href="#">Journal</a>
+      <a href="/journal">Journal</a>
       <a class="cta" href="https://brand0.app" target="_blank" rel="noopener">Begin</a>
     </nav>
   </div>
@@ -419,8 +418,7 @@
   <a href="#archetype-grid">Archetypes</a>
   <a href="#system">System</a>
   <a href="#offerings">Offerings</a>
-  <a href="#">About</a>
-  <a href="#">Journal</a>
+  <a href="/journal">Journal</a>
   <a class="cta" href="https://brand0.app" target="_blank" rel="noopener">Begin</a>
 </nav>
 </div>
@@ -602,8 +600,7 @@
     <a href="#archetype-grid">Archetypes</a>
     <a href="#system">System</a>
     <a href="#offerings">Offerings</a>
-    <a href="#">About</a>
-    <a href="#">Journal</a>
+    <a href="/journal">Journal</a>
   </nav>
   <div class="footer-right">A more interesting<br/>world awaits.</div>
 </footer>
@@ -673,7 +670,7 @@
     if (menu.classList.contains('is-open')) closeMenu(); else openMenu();
   });
   // in-page anchors: collapse first, then scroll, so they don't fight each
-  // other; anything else (Begin, About, Journal) just closes normally
+  // other; anything else (Begin, Journal) just closes normally
   menu.querySelectorAll('a').forEach(function (a) {
     a.addEventListener('click', function (e) {
       var href = a.getAttribute('href') || '';

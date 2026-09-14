@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>BRAND0 — Label Offerings</title>
-<meta name="description" content="Brand0 for labels: artist diagnostics, artist practice, roster packs, and bespoke label engagements."/>
+<title>BRAND0 — Journal</title>
+<meta name="description" content="Notes on identity, archetype, and public life."/>
 <link rel="icon" type="image/png" sizes="96x96" href="/my-favicon/favicon-96x96.png"/>
 <link rel="icon" type="image/x-icon" href="/my-favicon/favicon.ico"/>
 <link rel="apple-touch-icon" href="/my-favicon/apple-touch-icon.png"/>
@@ -34,9 +34,7 @@
     -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; text-decoration: none; }
-  .wordmark {
-    font-family: 'Roboto Mono', monospace; font-weight: 500; letter-spacing: 4px;
-  }
+  .wordmark { font-family: 'Roboto Mono', monospace; font-weight: 500; letter-spacing: 4px; }
   .eyebrow {
     font-family: 'Jost', sans-serif; font-size: .74rem; letter-spacing: .16em; text-transform: uppercase;
     color: var(--muted); line-height: 1.7;
@@ -47,11 +45,7 @@
   }
   .tick { width: 1px; height: 26px; background: var(--border-strong); margin: 14px 0; }
 
-  /* ── header ──
-     sticky lives on the wrapper (not the header alone) so the mobile menu
-     panel -- a sibling of <header>, not a child -- stays pinned directly
-     under it at any scroll position, instead of expanding wherever the
-     header happens to sit in the document when scrolled past */
+  /* ── header (identical to index.html/label.html) ── */
   .site-header-sticky { position: sticky; top: 0; z-index: 50; background: var(--bg); }
   header.site-header {
     display: flex; align-items: center; justify-content: space-between;
@@ -67,7 +61,6 @@
   .site-nav.right a.cta { color: var(--gold); }
   .header-groups { display: flex; align-items: center; gap: clamp(24px, 6vw, 64px); }
 
-  /* ── mobile menu (hamburger + panel) — hidden entirely above 860px ── */
   .menu-toggle {
     display: none; align-items: center; justify-content: center;
     width: 32px; height: 32px; background: none; border: none; cursor: pointer; padding: 0;
@@ -90,7 +83,6 @@
   }
   .mobile-menu a.cta { color: var(--gold); }
 
-  /* ── shared 3-column band header (label / kicker+statement / label) ── */
   .band-head {
     display: grid; grid-template-columns: minmax(160px,1fr) minmax(0,3fr) minmax(160px,1fr);
     gap: clamp(24px, 4vw, 56px); padding: clamp(48px, 6vw, 76px) clamp(20px, 4vw, 48px) clamp(32px, 4vw, 48px);
@@ -108,42 +100,40 @@
     font-size: .95rem; line-height: 1.6; color: var(--muted); max-width: 560px; margin: 18px auto 0;
   }
 
-  /* ── offerings / pricing (identical to index.html) ── */
-  .pricing-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(20px, 3vw, 40px);
-    padding: 0 clamp(20px, 4vw, 48px) clamp(40px, 5vw, 56px); text-align: center;
+  /* ── journal listing ── */
+  .journal-section { padding: 0 clamp(20px, 4vw, 48px) clamp(56px, 7vw, 96px); }
+  .journal-list-title {
+    font-family: 'Jost', sans-serif; font-size: .74rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--muted); border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 8px;
+    max-width: 760px; margin-left: auto; margin-right: auto;
   }
-  .price-tier {
-    padding: 28px 20px; border-radius: 2px; cursor: pointer;
-    transition: background .25s ease;
+  .journal-list { max-width: 760px; margin: 0 auto; }
+  .journal-card {
+    display: grid; grid-template-columns: 200px 1fr; gap: clamp(20px, 3vw, 32px);
+    padding: clamp(24px, 3vw, 36px) 0; border-bottom: 1px solid var(--border);
+    transition: opacity .2s ease;
   }
-  .price-tier:hover { background: var(--ink); }
-  .price-tier-name { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; transition: color .25s ease; }
-  .price-amount { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 2.4rem; margin-bottom: 14px; transition: color .25s ease; }
-  .price-desc { font-size: .9rem; line-height: 1.55; color: var(--muted); max-width: 220px; margin: 0 auto; transition: color .25s ease; }
-  .price-tier:hover .price-tier-name,
-  .price-tier:hover .price-amount,
-  .price-tier:hover .price-desc { color: #f7f1e5; }
+  .journal-card:hover { opacity: .82; }
+  .journal-card-thumb {
+    width: 200px; aspect-ratio: 4/3; border-radius: 2px; overflow: hidden;
+    background: var(--bg-deep); flex-shrink: 0;
+  }
+  .journal-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .journal-card-title {
+    font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+    line-height: 1.25; color: var(--ink); margin-bottom: 10px;
+  }
+  .journal-card-dek { font-size: .92rem; line-height: 1.6; color: var(--muted); margin-bottom: 14px; }
+  .journal-card-byline {
+    font-family: 'Jost', sans-serif; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--faint);
+  }
+  .journal-empty {
+    text-align: center; color: var(--muted); font-size: .95rem; padding: 40px 0;
+    max-width: 760px; margin: 0 auto;
+  }
 
-  .cta-wrap { text-align: center; padding-bottom: clamp(56px, 7vw, 88px); }
-  .system-note {
-    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400;
-    font-size: .8rem; color: var(--gold); max-width: 380px; margin: 0 auto 24px;
-  }
-  .btn-begin {
-    display: inline-block; padding: 20px 64px; border: 1px solid var(--border-strong);
-    background: var(--bg-deep); font-size: .78rem; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--ink); transition: background .2s ease, border-color .2s ease;
-  }
-  .btn-begin:hover { background: var(--gold); border-color: var(--gold); color: #f7f1e5; }
-  .labels-link {
-    display: inline-block; margin-top: 22px; font-size: .82rem; color: var(--muted);
-    border-bottom: 1px solid var(--border-strong); padding-bottom: 2px;
-    transition: color .2s ease, border-color .2s ease;
-  }
-  .labels-link:hover { color: var(--ink); border-color: var(--ink); }
-
-  /* ── footer ── */
+  /* ── footer (identical to index.html/label.html) ── */
   footer.site-footer {
     display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: start;
     padding: clamp(28px, 4vw, 40px) clamp(20px, 4vw, 48px); border-top: 1px solid var(--border);
@@ -159,18 +149,19 @@
     .band-head .col-right { text-align: left; }
     .band-head .col-center { text-align: left; }
     .band-statement, .band-sub { margin-left: 0; margin-right: 0; }
-    .pricing-grid { grid-template-columns: 1fr; }
     footer.site-footer { grid-template-columns: 1fr; text-align: left; }
     .footer-nav { justify-content: flex-start; }
     .footer-right { text-align: left; }
     .site-nav { display: none; }
     .menu-toggle { display: flex; }
     .mobile-menu { display: flex; }
-    #label-offerings .band-head,
-    #label-offerings .col-left,
-    #label-offerings .col-center,
-    #label-offerings .col-right { text-align: center; }
-    .label-offerings-tagline { display: none; }
+    #journal-hero .band-head,
+    #journal-hero .col-left,
+    #journal-hero .col-center,
+    #journal-hero .col-right { text-align: center; }
+    .journal-hero-tagline { display: none; }
+    .journal-card { grid-template-columns: 1fr; }
+    .journal-card-thumb { width: 100%; }
   }
 </style>
 </head>
@@ -208,46 +199,25 @@
 
 <main id="top">
 
-  <!-- ── Label offerings ── -->
-  <section id="label-offerings">
+  <!-- ── Journal hero ── -->
+  <section id="journal-hero">
     <div class="band-head">
-      <div class="col-left"><p class="eyebrow label-offerings-tagline">For labels<br/>and teams.</p></div>
+      <div class="col-left"><p class="eyebrow journal-hero-tagline">Notes on identity<br/>and public life.</p></div>
       <div class="col-center">
-        <p class="kicker">Brand0 for Labels</p>
-        <h1 class="band-statement">The same system, built for a roster.</h1>
+        <p class="kicker">The Journal</p>
+        <h1 class="band-statement">Archetype, in practice.</h1>
         <div class="tick" style="margin-left:auto;margin-right:auto"></div>
-        <p class="band-sub">From a single artist diagnostic to a bespoke engagement for a whole label team.</p>
+        <p class="band-sub">Short reads on identity, culture, and how the system behind Brand0 actually works.</p>
       </div>
-      <div class="col-right"><p class="eyebrow label-offerings-tagline">Same depth.<br/>Different scale.</p></div>
+      <div class="col-right"><p class="eyebrow journal-hero-tagline">Field notes.<br/>Case studies.</p></div>
     </div>
+  </section>
 
-    <div class="pricing-grid">
-      <div class="price-tier">
-        <div class="price-tier-name">Artist Diagnostic</div>
-        <div class="price-amount">$750</div>
-        <p class="price-desc">One artist: full Brand0 interactive report + audience psychology + social strategy.</p>
-      </div>
-      <div class="price-tier">
-        <div class="price-tier-name">Artist Practice</div>
-        <div class="price-amount">$2,000</div>
-        <p class="price-desc">One artist: everything above + bespoke strategy deck + 60-min session with both founders.</p>
-      </div>
-      <div class="price-tier">
-        <div class="price-tier-name">Roster Pack</div>
-        <div class="price-amount">$5,000</div>
-        <p class="price-desc">Brand0 for up to 5 artists, including reports + comparative roster insights.</p>
-      </div>
-      <div class="price-tier">
-        <div class="price-tier-name">Label Practice</div>
-        <div class="price-amount">$10,000+</div>
-        <p class="price-desc">Bespoke engagement for a campaign, developing roster, or label team.</p>
-      </div>
-    </div>
-
-    <div class="cta-wrap">
-      <p class="system-note">This isn&rsquo;t a branding agency template;<br/>there is an actual system underneath this.</p>
-      <a class="btn-begin" href="https://brand0.app" target="_blank" rel="noopener">Begin a Conversation</a>
-    </div>
+  <!-- ── Journal listing (populated from Supabase) ── -->
+  <section class="journal-section">
+    <p class="journal-list-title">Latest</p>
+    <div class="journal-list" id="journalList"></div>
+    <p class="journal-empty" id="journalEmpty" style="display:none">Nothing published yet — check back soon.</p>
   </section>
 
 </main>
@@ -268,31 +238,22 @@
 </footer>
 
 <script>
-// ── mobile hamburger menu (identical behavior to index.html) ──────────────
+// ── mobile hamburger menu (identical behavior to index.html/label.html) ──
 (function () {
   'use strict';
   var toggle = document.getElementById('menuToggle');
   var menu = document.getElementById('mobileMenu');
   if (!toggle || !menu) return;
-
   function closeMenu() {
     menu.classList.remove('is-open');
     toggle.classList.remove('is-open');
     toggle.setAttribute('aria-expanded', 'false');
-  }
-  function closeMenuInstant() {
-    var prevTransition = menu.style.transition;
-    menu.style.transition = 'none';
-    closeMenu();
-    void menu.offsetHeight;
-    menu.style.transition = prevTransition;
   }
   function openMenu() {
     menu.classList.add('is-open');
     toggle.classList.add('is-open');
     toggle.setAttribute('aria-expanded', 'true');
   }
-
   toggle.addEventListener('click', function () {
     if (menu.classList.contains('is-open')) closeMenu(); else openMenu();
   });
@@ -302,6 +263,62 @@
   window.addEventListener('resize', function () {
     if (window.innerWidth > 860) closeMenu();
   });
+})();
+
+// ── Journal listing: pulls published posts from the SAME Supabase project
+// creative-relatives-matcher.js reads artist rows from (brand0-site) --
+// journal_posts is just another table in that project, RLS-restricted to
+// published_at IS NOT NULL rows only, so drafts never reach the anon key
+// used here. Publishing = inserting/editing a row directly in Supabase;
+// nothing on this page ever needs to change. ──
+(function () {
+  'use strict';
+  var SUPABASE_URL = 'https://qumnkvyzqsmgwznohuld.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_YXT4qh0531_pVdFQLIaR1Q__EtiIj4X';
+
+  function escapeHTML(s) {
+    var div = document.createElement('div');
+    div.textContent = s == null ? '' : s;
+    return div.innerHTML;
+  }
+  function formatDate(iso) {
+    if (!iso) return '';
+    var d = new Date(iso);
+    if (isNaN(d)) return '';
+    return d.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  fetch(
+    SUPABASE_URL + '/rest/v1/journal_posts?select=slug,title,dek,author,cover_image_url,published_at&order=published_at.desc',
+    { headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY } }
+  )
+    .then(function (res) { if (!res.ok) throw new Error('Journal fetch failed: ' + res.status); return res.json(); })
+    .then(function (posts) {
+      var list = document.getElementById('journalList');
+      if (!posts || !posts.length) {
+        document.getElementById('journalEmpty').style.display = 'block';
+        return;
+      }
+      list.innerHTML = posts.map(function (p) {
+        var byline = [p.author, formatDate(p.published_at)].filter(Boolean).join(' — ');
+        var thumb = p.cover_image_url
+          ? '<img src="' + escapeHTML(p.cover_image_url) + '" alt="" loading="lazy"/>'
+          : '';
+        return '<a class="journal-card" href="/journal/' + encodeURIComponent(p.slug) + '">' +
+          '<div class="journal-card-thumb">' + thumb + '</div>' +
+          '<div>' +
+            '<div class="journal-card-title">' + escapeHTML(p.title) + '</div>' +
+            (p.dek ? '<p class="journal-card-dek">' + escapeHTML(p.dek) + '</p>' : '') +
+            '<div class="journal-card-byline">' + escapeHTML(byline) + '</div>' +
+          '</div>' +
+        '</a>';
+      }).join('');
+    })
+    .catch(function (e) {
+      console.error('Journal listing failed:', e); // the rest of the page must not be affected
+      document.getElementById('journalEmpty').textContent = 'Journal is temporarily unavailable — check back soon.';
+      document.getElementById('journalEmpty').style.display = 'block';
+    });
 })();
 </script>
 

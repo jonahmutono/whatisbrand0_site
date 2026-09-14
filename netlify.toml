@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/journal/*"
+  to = "/journal-post.html"
+  status = 200
