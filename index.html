@@ -23,7 +23,8 @@
     --gold: #b8945a;
     --mauve: #ad7f8c;
     --seaglass: #5f8f96;
-    --purple: #341539; /* matches The System's full-bleed field */
+    --purple: #341539; /* The System's full-bleed field */
+    --purple-light: #8b6fc4; /* archetype-grid hover wash -- --purple reads too dark/muddy at that low a mix */
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   /* opens at 110% for legibility — a non-standard property, but widely
@@ -59,9 +60,13 @@
      text sections above -- the grid itself is the destination */
   #archetype-grid { scroll-margin-top: 72px; }
 
-  /* ── header ── */
+  /* ── header ──
+     sticky lives on the wrapper (not the header alone) so the mobile menu
+     panel -- a sibling of <header>, not a child -- stays pinned directly
+     under it at any scroll position, instead of expanding wherever the
+     header happens to sit in the document when scrolled past */
+  .site-header-sticky { position: sticky; top: 0; z-index: 50; background: var(--bg); }
   header.site-header {
-    position: sticky; top: 0; z-index: 50; background: var(--bg);
     display: flex; align-items: center; justify-content: space-between;
     padding: 22px clamp(20px, 4vw, 48px); border-bottom: 1px solid var(--border);
   }
@@ -150,10 +155,10 @@
      bottom of the box (where the sigil animation and text live) rather
      than an instant flat tint -- scale + opacity together read as motion */
   .archetype-cell { transition: background .5s ease; }
-  .archetype-cell:hover { background: color-mix(in srgb, var(--bg) 90%, var(--purple) 10%); }
+  .archetype-cell:hover { background: color-mix(in srgb, var(--bg) 90%, var(--purple-light) 10%); }
   .archetype-cell::before {
     content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-    background: radial-gradient(circle at 50% 100%, color-mix(in srgb, var(--purple) 55%, transparent) 0%, transparent 75%);
+    background: radial-gradient(circle at 50% 100%, color-mix(in srgb, var(--purple-light) 55%, transparent) 0%, transparent 75%);
     opacity: 0; transform: scale(.6);
     transition: opacity .6s ease, transform .9s cubic-bezier(.16,.8,.24,1);
   }
@@ -365,22 +370,26 @@
     #offerings .band-head { padding-top: 24px; padding-bottom: 12px; }
     #offerings .pricing-grid { gap: 4px; }
     #offerings .price-tier { padding-top: 16px; padding-bottom: 16px; }
-    /* The System on mobile: same centering as the other sections' side labels */
-    #system .band-head,
-    #system .col-left,
-    #system .col-center,
-    #system .col-right { text-align: center; }
+    /* The System on mobile: drop the Identity/Expression side columns
+       entirely (not just re-center them) so the reading content is back
+       at the top of the section, same as before they existed -- but keep
+       the center column centered, since the general .band-head mobile
+       rule above defaults it to left */
+    #system .band-head, #system .col-center { text-align: center; }
+    #system .col-left, #system .col-right { display: none; }
   }
 </style>
 </head>
 <body>
 
+<div class="site-header-sticky">
 <header class="site-header">
   <a href="#top" class="wordmark">BRAND0</a>
   <div class="header-groups">
     <nav class="site-nav">
       <a href="#archetypes">Approach</a>
       <a href="#archetype-grid">Archetypes</a>
+      <a href="#system">System</a>
       <a href="#offerings">Offerings</a>
     </nav>
     <nav class="site-nav right">
@@ -397,11 +406,13 @@
 <nav class="mobile-menu" id="mobileMenu">
   <a href="#archetypes">Approach</a>
   <a href="#archetype-grid">Archetypes</a>
+  <a href="#system">System</a>
   <a href="#offerings">Offerings</a>
   <a href="#">About</a>
   <a href="#">Journal</a>
   <a class="cta" href="https://brand0.app" target="_blank" rel="noopener">Begin</a>
 </nav>
+</div>
 
 <main id="top">
 
@@ -578,6 +589,7 @@
   <nav class="footer-nav">
     <a href="#archetypes">Approach</a>
     <a href="#archetype-grid">Archetypes</a>
+    <a href="#system">System</a>
     <a href="#offerings">Offerings</a>
     <a href="#">About</a>
     <a href="#">Journal</a>
