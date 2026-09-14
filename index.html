@@ -219,10 +219,9 @@
   .archetype-keywords { position: relative; z-index: 1; font-size: .88rem; line-height: 1.55; color: var(--muted); }
 
   /* ── The Reading: full purple field between the archetype grid and
-     pricing. Echoes the real reading deck's own accent purple (the word
-     highlighted in "You are a Magician with a Lover's engine") ── */
+     pricing ── */
   .reading-field {
-    background: var(--purple); color: #f7f1e5;
+    background: #341539; color: #f7f1e5;
     padding: clamp(84px, 10vw, 132px) clamp(20px, 4vw, 48px);
     text-align: center; position: relative; overflow: hidden;
   }
@@ -239,30 +238,12 @@
     font-size: .98rem; line-height: 1.65; color: rgba(247,241,229,.82);
     max-width: 460px; margin: 0 auto clamp(56px, 8vw, 88px);
   }
-  /* three pale report strips, floating with a slow independent bob per card */
-  .reading-cards { display: flex; justify-content: center; align-items: center; gap: clamp(18px, 3vw, 30px); }
+  /* three real recordings of the actual reading, sitting side by side —
+     no motion of their own beyond the recordings themselves */
+  .reading-cards { display: flex; justify-content: center; align-items: center; gap: clamp(14px, 2.4vw, 24px); }
   .reading-card {
-    width: clamp(52px, 7vw, 68px); border-radius: 3px;
-    background: #f7f1e5 repeating-linear-gradient(to bottom, transparent 0 10px, rgba(44,41,36,.12) 10px 11px);
-    box-shadow: 0 24px 48px -16px rgba(20,12,36,.45);
-  }
-  .reading-card:nth-child(1) { height: 190px; animation: readingFloat1 6.5s ease-in-out infinite; }
-  .reading-card:nth-child(2) { height: 236px; animation: readingFloat2 7.5s ease-in-out infinite; }
-  .reading-card:nth-child(3) { height: 202px; animation: readingFloat3 7s ease-in-out infinite; }
-  @keyframes readingFloat1 {
-    0%, 100% { transform: rotate(-4deg) translateY(8px); }
-    50%      { transform: rotate(-4deg) translateY(-8px); }
-  }
-  @keyframes readingFloat2 {
-    0%, 100% { transform: translateY(-6px); }
-    50%      { transform: translateY(8px); }
-  }
-  @keyframes readingFloat3 {
-    0%, 100% { transform: rotate(4deg) translateY(4px); }
-    50%      { transform: rotate(4deg) translateY(-10px); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .reading-card { animation: none !important; }
+    width: clamp(110px, 15vw, 168px); aspect-ratio: 888 / 1080; object-fit: cover;
+    border-radius: 6px; box-shadow: 0 24px 48px -16px rgba(0,0,0,.5);
   }
 
   /* ── offerings / pricing ── */
@@ -499,10 +480,10 @@
       <p class="reading-kicker">The Reading</p>
       <h2 class="reading-title">Your archetype is only the beginning.</h2>
       <p class="reading-sub">Brand0 turns the patterns in your identity into a system for understanding how you create, communicate and appear in culture.</p>
-      <div class="reading-cards" aria-hidden="true">
-        <div class="reading-card"></div>
-        <div class="reading-card"></div>
-        <div class="reading-card"></div>
+      <div class="reading-cards">
+        <video class="reading-card" src="videos/reading-1.mp4" autoplay muted loop playsinline aria-label="A sample Brand0 reading"></video>
+        <video class="reading-card" src="videos/reading-2.mp4" autoplay muted loop playsinline aria-label="A sample Brand0 reading"></video>
+        <video class="reading-card" src="videos/reading-3.mp4" autoplay muted loop playsinline aria-label="A sample Brand0 reading"></video>
       </div>
     </div>
   </section>
