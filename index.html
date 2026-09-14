@@ -115,6 +115,15 @@
     border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
   }
   .archetype-cell:nth-child(6n) { border-right: none; }
+  /* cross-fading example-artist label pinned to the top of the box —
+     cycles the names of real artists who lead with this archetype */
+  .archetype-examples {
+    position: absolute; top: 22px; left: 22px; right: 22px; z-index: 1;
+    font-family: 'Jost', sans-serif; font-size: .66rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--gold); opacity: 0; transition: opacity .4s ease;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .archetype-examples.is-visible { opacity: .85; }
   /* the sigil fills the box as background atmosphere, not a small icon —
      same language as the quiz's own masthead sigil behind the reveal */
   .archetype-sigil {
@@ -300,50 +309,62 @@
     <div class="archetype-grid" id="archetype-grid">
       <div class="archetype-cell">
         <div class="archetype-sigil mood-pulse-breathe"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="100" r="64"/><circle cx="100" cy="100" r="82"/></svg></div>
+        <div class="archetype-examples" data-examples="Britney Spears|Enya|Kacey Musgraves"></div>
         <div class="archetype-name">Innocent</div><div class="archetype-keywords">Purity<br/>Possibility</div>
       </div>
       <div class="archetype-cell">
         <div class="archetype-sigil mood-spin-medium"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="64" y="64" width="72" height="72" transform="rotate(45 100 100)"/><line x1="100" y1="26" x2="100" y2="174"/><line x1="26" y1="100" x2="174" y2="100"/></svg></div>
+        <div class="archetype-examples" data-examples="Bon Iver|John Mayer|Joni Mitchell"></div>
         <div class="archetype-name">Explorer</div><div class="archetype-keywords">Freedom<br/>Discovery</div>
       </div>
       <div class="archetype-cell">
         <div class="archetype-sigil mood-spin-slow"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="100" r="72"/><line x1="34" y1="100" x2="166" y2="100"/><circle cx="100" cy="100" r="9"/></svg></div>
+        <div class="archetype-examples" data-examples="Alex G|Hozier|Lorde|Mitski|Phoebe Bridgers"></div>
         <div class="archetype-name">Sage</div><div class="archetype-keywords">Truth<br/>Perspective</div>
       </div>
       <div class="archetype-cell">
         <div class="archetype-sigil mood-ascend-pulse"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M100,22 L166,54 L158,118 Q158,158 100,182 Q42,158 42,118 L34,54 Z"/></svg></div>
+        <div class="archetype-examples" data-examples="Kendrick Lamar|Taylor Swift"></div>
         <div class="archetype-name">Hero</div><div class="archetype-keywords">Courage<br/>Transformation</div>
       </div>
       <div class="archetype-cell">
         <div class="archetype-sigil mood-drift-shard"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M64,20 L124,78 L92,94 L152,158 L98,116 L118,102 L58,60 Z"/></svg></div>
+        <div class="archetype-examples" data-examples="Chappell Roan|Kanye West|Russ"></div>
         <div class="archetype-name">Outlaw</div><div class="archetype-keywords">Disruption<br/>Liberation</div>
       </div>
       <div class="archetype-cell">
         <div class="archetype-sigil mood-spin-medium"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="88" cy="100" r="72"/><circle cx="126" cy="100" r="54"/></svg></div>
+        <div class="archetype-examples" data-examples="Billie Eilish|Björk|Charli XCX|Daft Punk|Florence Welch"></div>
         <div class="archetype-name">Magician</div><div class="archetype-keywords">Vision<br/>Transmutation</div>
       </div>
       <div class="archetype-cell">
         <div class="archetype-sigil mood-spin-medium"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M40,150 L34,52 L118,30 L170,64 L160,144"/></svg></div>
+        <div class="archetype-examples" data-examples="Calvin Harris|Doja Cat|Grimes|Lana Del Rey|Mk.Gee"></div>
         <div class="archetype-name">Creator</div><div class="archetype-keywords">Imagination<br/>Expression</div>
       </div>
       <div class="archetype-cell">
         <div class="archetype-sigil mood-pulse-breathe"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M40,112 Q40,50 100,50 Q160,50 160,112"/><ellipse cx="100" cy="130" rx="46" ry="34"/></svg></div>
+        <div class="archetype-examples" data-examples="Alicia Keys|Bill Withers|Dolly Parton|James Taylor|Tracy Chapman"></div>
         <div class="archetype-name">Caregiver</div><div class="archetype-keywords">Compassion<br/>Support</div>
       </div>
       <div class="archetype-cell">
         <div class="archetype-sigil mood-spin-slow"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="76" y="18" width="48" height="164"/><line x1="100" y1="18" x2="100" y2="182"/><line x1="50" y1="182" x2="150" y2="182"/></svg></div>
+        <div class="archetype-examples" data-examples="Beyoncé|Drake|Kelly Clarkson|Rihanna"></div>
         <div class="archetype-name">Ruler</div><div class="archetype-keywords">Structure<br/>Influence</div>
       </div>
       <div class="archetype-cell">
         <div class="archetype-sigil mood-pulse-breathe"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="78" r="58"/><circle cx="100" cy="122" r="58"/></svg></div>
+        <div class="archetype-examples" data-examples="Adele|Sabrina Carpenter|Sade|SZA"></div>
         <div class="archetype-name">Lover</div><div class="archetype-keywords">Connection<br/>Beauty</div>
       </div>
       <div class="archetype-cell">
         <div class="archetype-sigil mood-wobble-elastic"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M100,24 L116,72 L164,56 L130,94 L170,122 L120,118 L126,170 L100,126 L70,168 L78,116 L30,124 L64,92 L28,58 L78,70 Z"/></svg></div>
+        <div class="archetype-examples" data-examples="Bo Burnham|Lil Dicky|Weird Al Yankovic"></div>
         <div class="archetype-name">Jester</div><div class="archetype-keywords">Joy<br/>Subversion</div>
       </div>
       <div class="archetype-cell">
         <div class="archetype-sigil mood-spin-slow"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="34" y="34" width="132" height="132" rx="30"/></svg></div>
+        <div class="archetype-examples" data-examples="Bruce Springsteen|Coldplay|Ed Sheeran"></div>
         <div class="archetype-name">Everyman</div><div class="archetype-keywords">Belonging<br/>Humanity</div>
       </div>
     </div>
@@ -446,6 +467,40 @@
   </nav>
   <div class="footer-right">A more interesting<br/>world awaits.</div>
 </footer>
+
+<script>
+// Cross-fades through real artist examples for each archetype box. Names
+// are baked in from the same Supabase artist_archetype_reference table
+// brand0-site's Creative Relatives feature uses (primary_archetype match,
+// capped at 5 per box) -- static reference data, not fetched live.
+(function () {
+  'use strict';
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var FADE_MS = 400;
+  var HOLD_MS = 2200;
+
+  document.querySelectorAll('.archetype-examples[data-examples]').forEach(function (el, i) {
+    var names = el.getAttribute('data-examples').split('|');
+    var idx = 0;
+
+    function show() {
+      el.textContent = 'e.g. ' + names[idx];
+      el.classList.add('is-visible');
+    }
+    show();
+
+    if (names.length < 2 || reduceMotion) return; // nothing to cycle, or user asked for stillness
+
+    setInterval(function () {
+      el.classList.remove('is-visible');
+      setTimeout(function () {
+        idx = (idx + 1) % names.length;
+        show();
+      }, FADE_MS);
+    }, HOLD_MS + (i % 4) * 250); // slight stagger so the 12 boxes don't flip in lockstep
+  });
+})();
+</script>
 
 </body>
 </html>
