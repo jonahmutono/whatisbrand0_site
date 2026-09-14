@@ -21,7 +21,10 @@
     --seaglass: #5f8f96;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  /* opens at 110% for legibility — a non-standard property, but widely
+     supported in Chromium/Safari (the primary target here); Firefox falls
+     back to 100% rather than erroring */
+  html { scroll-behavior: smooth; zoom: 1.1; }
   body {
     background: var(--bg); color: var(--ink);
     font-family: 'Jost', sans-serif; font-weight: 300;
@@ -45,6 +48,7 @@
 
   /* ── header ── */
   header.site-header {
+    position: sticky; top: 0; z-index: 50; background: var(--bg);
     display: flex; align-items: center; justify-content: space-between;
     padding: 22px clamp(20px, 4vw, 48px); border-bottom: 1px solid var(--border);
   }
