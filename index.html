@@ -281,7 +281,14 @@
     .hero-frame .col-left,
     .hero-frame .col-center,
     .hero-frame .col-right { text-align: center; }
-    .hero-frame .tick { display: none; }
+    .hero-frame .tick { visibility: hidden; }
+    /* Approach section (#archetypes) on mobile: drop "The human always
+       comes first.", center everything, let the layout close up the gap */
+    .human-first-copy { display: none; }
+    #archetypes .band-head,
+    #archetypes .col-left,
+    #archetypes .col-center,
+    #archetypes .col-right { text-align: center; }
   }
 </style>
 </head>
@@ -342,7 +349,7 @@
   <!-- ── Archetypes reveal + grid ── -->
   <section class="band" id="archetypes">
     <div class="band-head">
-      <div class="col-left"><p class="eyebrow">The human<br/>always comes<br/>first.</p></div>
+      <div class="col-left"><p class="eyebrow human-first-copy">The human<br/>always comes<br/>first.</p></div>
       <div class="col-center">
         <p class="kicker">Archetypes reveal. We translate.</p>
         <h2 class="band-statement">Human beings contain multitudes. Public perception does not.</h2>
