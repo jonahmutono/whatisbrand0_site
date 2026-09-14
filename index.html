@@ -203,6 +203,14 @@
     color: var(--ink); transition: background .2s ease, border-color .2s ease;
   }
   .btn-begin:hover { background: var(--gold); border-color: var(--gold); color: #f7f1e5; }
+  /* secondary CTA — deliberately quieter than btn-begin, points to a
+     licensing page (/labels) that doesn't exist yet */
+  .labels-link {
+    display: inline-block; margin-top: 22px; font-size: .82rem; color: var(--muted);
+    border-bottom: 1px solid var(--border-strong); padding-bottom: 2px;
+    transition: color .2s ease, border-color .2s ease;
+  }
+  .labels-link:hover { color: var(--ink); border-color: var(--ink); }
 
   /* ── footer ── */
   footer.site-footer {
@@ -414,6 +422,8 @@
 
     <div class="cta-wrap">
       <a class="btn-begin" href="https://brand0.app" target="_blank" rel="noopener">Begin Your Reading</a>
+      <br/>
+      <a class="labels-link" href="/labels">Are you a label? See your licensing offerings here.</a>
     </div>
   </section>
 
