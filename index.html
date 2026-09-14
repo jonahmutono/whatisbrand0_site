@@ -23,6 +23,7 @@
     --gold: #b8945a;
     --mauve: #ad7f8c;
     --seaglass: #5f8f96;
+    --purple: #8b6fc4; /* brand0-site's --accent, the violet used on its password box */
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   /* opens at 110% for legibility — a non-standard property, but widely
@@ -145,6 +146,18 @@
     border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
   }
   .archetype-cell:nth-child(6n) { border-right: none; }
+  /* hover: a soft radial wash of brand0-site's purple blooms up from the
+     bottom of the box (where the sigil animation and text live) rather
+     than an instant flat tint -- scale + opacity together read as motion */
+  .archetype-cell { transition: background .5s ease; }
+  .archetype-cell:hover { background: color-mix(in srgb, var(--bg) 90%, var(--purple) 10%); }
+  .archetype-cell::before {
+    content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background: radial-gradient(circle at 50% 100%, color-mix(in srgb, var(--purple) 55%, transparent) 0%, transparent 75%);
+    opacity: 0; transform: scale(.6);
+    transition: opacity .6s ease, transform .9s cubic-bezier(.16,.8,.24,1);
+  }
+  .archetype-cell:hover::before { opacity: 1; transform: scale(1); }
   /* cross-fading example-artist label pinned to the top of the box —
      cycles the names of real artists who lead with this archetype */
   .archetype-examples {
@@ -158,8 +171,9 @@
      same language as the quiz's own masthead sigil behind the reveal */
   .archetype-sigil {
     position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-    color: var(--gold); opacity: .18; pointer-events: none;
+    color: var(--gold); opacity: .18; pointer-events: none; transition: opacity .35s ease;
   }
+  .archetype-cell:hover .archetype-sigil { opacity: .6; }
   /* the same per-archetype sigil animations the quiz plays continuously on
      its masthead slide — here they're paused by default and only run while
      the box is hovered, since 12 of them animating at once would be too busy */
@@ -177,8 +191,8 @@
     100% { transform: translate(8px, -4px) rotate(4deg) scale(1.04); }
   }
   @keyframes sigilBreathe {
-    0%   { transform: scale(1); opacity: .13; }
-    100% { transform: scale(1.07); opacity: .24; }
+    0%   { transform: scale(1); }
+    100% { transform: scale(1.07); }
   }
   @keyframes sigilWobble {
     0%, 100% { transform: rotate(-4deg) scale(1); }
@@ -187,8 +201,8 @@
     75%      { transform: rotate(5deg) scale(1.02); }
   }
   @keyframes sigilAscend {
-    0%   { transform: translateY(6px); opacity: .14; }
-    100% { transform: translateY(-8px); opacity: .26; }
+    0%   { transform: translateY(6px); }
+    100% { transform: translateY(-8px); }
   }
   @media (prefers-reduced-motion: reduce) {
     .archetype-sigil { animation: none !important; }
@@ -381,6 +395,7 @@
         <h2 class="band-statement">Human beings contain multitudes. Public perception does not.</h2>
         <div class="tick" style="margin-left:auto;margin-right:auto"></div>
         <p class="band-sub">We find the signal already inside you and make it legible.</p>
+        <p class="band-sub">Through a guided reading, Brand0 maps the patterns in how you think and create into a clear strategy for how you show up in public.</p>
       </div>
       <div class="col-right"><p class="eyebrow">Insight<br/>Strategy<br/>Culture<br/>Impact</p></div>
     </div>
