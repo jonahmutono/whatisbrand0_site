@@ -49,6 +49,9 @@
   /* anchor targets land flush against the sticky header without this —
      offsets the jump by the header's height plus a little breathing room */
   #top, #approach, #archetypes, #offerings { scroll-margin-top: 96px; }
+  /* flush against the header, not offset with breathing room like the
+     text sections above -- the grid itself is the destination */
+  #archetype-grid { scroll-margin-top: 72px; }
 
   /* ── header ── */
   header.site-header {
@@ -246,7 +249,7 @@
   <div class="header-groups">
     <nav class="site-nav">
       <a href="#archetypes">Approach</a>
-      <a href="#archetypes">Archetypes</a>
+      <a href="#archetype-grid">Archetypes</a>
       <a href="#offerings">Offerings</a>
     </nav>
     <nav class="site-nav right">
@@ -294,7 +297,7 @@
       <div class="col-right"><p class="eyebrow">Insight<br/>Strategy<br/>Culture<br/>Impact</p></div>
     </div>
 
-    <div class="archetype-grid">
+    <div class="archetype-grid" id="archetype-grid">
       <div class="archetype-cell">
         <div class="archetype-sigil mood-pulse-breathe"><svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="100" r="64"/><circle cx="100" cy="100" r="82"/></svg></div>
         <div class="archetype-name">Innocent</div><div class="archetype-keywords">Purity<br/>Possibility</div>
@@ -436,7 +439,7 @@
   </div>
   <nav class="footer-nav">
     <a href="#archetypes">Approach</a>
-    <a href="#archetypes">Archetypes</a>
+    <a href="#archetype-grid">Archetypes</a>
     <a href="#offerings">Offerings</a>
     <a href="#">About</a>
     <a href="#">Journal</a>
