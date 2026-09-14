@@ -46,6 +46,10 @@
   .tick { width: 1px; height: 26px; background: var(--border-strong); margin: 14px 0; }
   .band { border-bottom: 1px solid var(--border); }
 
+  /* anchor targets land flush against the sticky header without this —
+     offsets the jump by the header's height plus a little breathing room */
+  #top, #approach, #archetypes, #offerings { scroll-margin-top: 96px; }
+
   /* ── header ── */
   header.site-header {
     position: sticky; top: 0; z-index: 50; background: var(--bg);
@@ -233,7 +237,7 @@
   <a href="#top" class="wordmark">BRAND0</a>
   <div class="header-groups">
     <nav class="site-nav">
-      <a href="#approach">Approach</a>
+      <a href="#archetypes">Approach</a>
       <a href="#archetypes">Archetypes</a>
       <a href="#offerings">Offerings</a>
     </nav>
@@ -421,7 +425,7 @@
     <p class="footer-tagline">People shape culture.<br/>We help you shape yours.</p>
   </div>
   <nav class="footer-nav">
-    <a href="#approach">Approach</a>
+    <a href="#archetypes">Approach</a>
     <a href="#archetypes">Archetypes</a>
     <a href="#offerings">Offerings</a>
     <a href="#">About</a>
