@@ -275,6 +275,13 @@
     .site-nav { display: none; }
     .menu-toggle { display: flex; }
     .mobile-menu { display: flex; }
+    /* hero-only on mobile: drop the two side taglines, center everything else */
+    .hero-tagline { display: none; }
+    .hero-frame .band-head,
+    .hero-frame .col-left,
+    .hero-frame .col-center,
+    .hero-frame .col-right { text-align: center; }
+    .hero-frame .tick { margin-left: auto; margin-right: auto; }
   }
 </style>
 </head>
@@ -316,7 +323,7 @@
       <div class="col-left">
         <p class="eyebrow">Identity strategy<br/>for a more<br/>interesting world.</p>
         <div class="tick"></div>
-        <p style="font-size:.95rem;color:var(--ink)">Clarity creates culture.</p>
+        <p class="hero-tagline" style="font-size:.95rem;color:var(--ink)">Clarity creates culture.</p>
       </div>
       <div class="col-center">
         <p class="hero-wordmark wordmark">BRAND0</p>
@@ -327,7 +334,7 @@
       <div class="col-right">
         <p class="eyebrow">People<br/>Artists<br/>Creators<br/>Visionaries<br/>Change-makers<br/>Cultural figures</p>
         <div class="tick" style="margin-left:auto"></div>
-        <p style="font-size:.95rem;color:var(--ink)">More than a brand.<br/>A truer you.</p>
+        <p class="hero-tagline" style="font-size:.95rem;color:var(--ink)">More than a brand.<br/>A truer you.</p>
       </div>
     </div>
   </section>
