@@ -141,9 +141,19 @@
     display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(20px, 3vw, 40px);
     padding: 0 clamp(20px, 4vw, 48px) clamp(40px, 5vw, 56px); text-align: center;
   }
-  .price-tier-name { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
-  .price-amount { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 2.4rem; margin-bottom: 14px; }
-  .price-desc { font-size: .9rem; line-height: 1.55; color: var(--muted); max-width: 220px; margin: 0 auto; }
+  /* darkens on hover — a buy signal ahead of the Stripe links that will
+     sit behind each tier */
+  .price-tier {
+    padding: 28px 20px; border-radius: 2px; cursor: pointer;
+    transition: background .25s ease;
+  }
+  .price-tier:hover { background: var(--ink); }
+  .price-tier-name { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; transition: color .25s ease; }
+  .price-amount { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 2.4rem; margin-bottom: 14px; transition: color .25s ease; }
+  .price-desc { font-size: .9rem; line-height: 1.55; color: var(--muted); max-width: 220px; margin: 0 auto; transition: color .25s ease; }
+  .price-tier:hover .price-tier-name,
+  .price-tier:hover .price-amount,
+  .price-tier:hover .price-desc { color: #f7f1e5; }
 
   .cta-wrap { text-align: center; padding-bottom: clamp(56px, 7vw, 88px); }
   .btn-begin {
